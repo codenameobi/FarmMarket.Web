@@ -64,5 +64,18 @@ namespace FarmMarket.Tests.Service
             //Assert
             result.Should().NotBeNull();
         }
+
+        [Fact]
+        public async void FarmProductServiceTest_GetFarmProducts_ReturnProducts()
+        {
+            var dbContext = await GetDatabaseContext();
+            var productService = new FarmProductService(dbContext);
+
+            var result = productService.GetFarmProducts();
+
+            result.Should().NotBeEmpty();
+            result.Should().BeOfType<FarmProduct>();
+
+        }
     }
 }
