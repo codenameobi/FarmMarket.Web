@@ -12,9 +12,8 @@ namespace FarmMarket.Data.Interfaces
         IEnumerable<FarmProduct> GetFarmProducts();
         FarmProduct GetFarmProduct(Guid productId);
         IEnumerable<FarmProduct> GetFarmProducts(string productName);
-        Task<FarmProduct> AddFarmProduct(FarmProduct product);
+        Task<Guid> AddFarmProduct(FarmProduct product);
         bool UpdateFarmProduct(FarmProduct farmProduct);
         void DeleteFarmProduct(Guid productId);
-        bool Save();
     }
 }

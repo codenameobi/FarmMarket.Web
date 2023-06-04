@@ -18,11 +18,11 @@ namespace FarmMarket.Service.Services
             _context = context;
         }
 
-        public async Task<FarmProduct> AddFarmProduct(FarmProduct product)
+        public async Task<Guid> AddFarmProduct(FarmProduct product)
         {
             var farmProduct = _context.FarmProducts.Add(product);
             await _context.SaveChangesAsync();
-            return product;
+            return product.Id;
         }
 
         public void DeleteFarmProduct(Guid productId)
@@ -56,6 +56,11 @@ namespace FarmMarket.Service.Services
         }
 
         public IEnumerable<FarmProduct> GetFarmProducts(string productName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateFarmProduct(FarmProduct farmProduct)
         {
             throw new NotImplementedException();
         }
