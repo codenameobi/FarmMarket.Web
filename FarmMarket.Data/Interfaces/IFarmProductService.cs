@@ -10,10 +10,9 @@ namespace FarmMarket.Data.Interfaces
     public interface IFarmProductService
     {
         IEnumerable<FarmProduct> GetFarmProducts();
-        FarmProduct GetFarmProduct(Guid productId);
-        IEnumerable<FarmProduct> GetFarmProducts(string productName);
-        Task<Guid> AddFarmProduct(FarmProduct product);
-        bool UpdateFarmProduct(FarmProduct farmProduct);
+        Task<FarmProduct> GetFarmProduct(Guid productId);
+        Task<FarmProduct> AddFarmProduct(FarmProduct product);
+        Task<bool> UpdateFarmProduct(FarmProduct product, Guid productId);
         void DeleteFarmProduct(Guid productId);
     }
 }

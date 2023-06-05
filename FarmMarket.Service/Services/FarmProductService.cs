@@ -1,6 +1,7 @@
 ﻿using FarmMarket.Data;
 using FarmMarket.Data.Interfaces;
 using FarmMarket.Data.Model;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,11 @@ namespace FarmMarket.Service.Services
             _context = context;
         }
 
-        public async Task<Guid> AddFarmProduct(FarmProduct product)
+        public async Task<FarmProduct> AddFarmProduct(FarmProduct product)
         {
             var farmProduct = _context.FarmProducts.Add(product);
             await _context.SaveChangesAsync();
-            return product.Id;
+            return product;
         }
 
         public void DeleteFarmProduct(Guid productId)
@@ -35,9 +36,9 @@ namespace FarmMarket.Service.Services
             }
         }
 
-        public FarmProduct GetFarmProduct(Guid productId)
+        public async Task<FarmProduct> GetFarmProduct(Guid productId)
         {
-            var farmProduct = _context.FarmProducts.Where(p => p.Id == productId).FirstOrDefault();
+            var farmProduct = await _context.FarmProducts.Where(p => p.Id == productId).FirstOrDefaultAsync();
             return farmProduct;
         }
 
@@ -47,22 +48,13 @@ namespace FarmMarket.Service.Services
             return farmProducts;
         }
 
-        public bool UpdateFarmProduct(FarmProduct product, Guid productId)
+        public async Task<bool> UpdateFarmProduct(FarmProduct product, Guid productId)
         {
             var farmProduct = _context.FarmProducts.Where(p => p.Id == productId).FirstOrDefault();
-            _context.FarmProducts.Update(farmProduct);
+            _context.FarmProducts.Update(product);
+            await _context.SaveChangesAsync();
             return true;
 
-        }
-
-        public IEnumerable<FarmProduct> GetFarmProducts(string productName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool UpdateFarmProduct(FarmProduct farmProduct)
-        {
-            throw new NotImplementedException();
         }
     }
 }

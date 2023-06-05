@@ -7,6 +7,7 @@ namespace FarmMarket.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
         {
+            Database.EnsureCreated();
         }
 
         public DbSet<FarmProduct> FarmProducts { get; set; }

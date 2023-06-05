@@ -10,7 +10,7 @@ namespace FarmMarket.Data.Model
     public class BaseModel
     {
         [Key] 
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         public Guid CreatedBy { get; set; }
 
