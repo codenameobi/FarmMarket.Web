@@ -46,11 +46,11 @@ namespace FarmMarket.API.Controllers
         }
 
         // PUT api/<FarmProductController>/5
-        [HttpPut("{productId}")]
-        public async Task<ActionResult<bool>> Put(Guid productId, [FromBody] FarmProductRequest productRequest)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<bool>> Put(Guid id, [FromBody] FarmProductRequest productRequest)
         {
             var product = productRequest.ToFarmProduct(productRequest);
-            return await _farmProductService.UpdateFarmProduct(product, productId);
+            return await _farmProductService.UpdateFarmProduct(product, id);
         }
 
         // DELETE api/<FarmProductController>/5

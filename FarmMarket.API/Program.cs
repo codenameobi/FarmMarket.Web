@@ -1,6 +1,8 @@
 using FarmMarket.Data;
+using FarmMarket.Data.Identity;
 using FarmMarket.Data.Interfaces;
 using FarmMarket.Service.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,10 @@ var conString = builder.Configuration.GetConnectionString("DefaultConnection");
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(conString));
+
+//builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+//    .AddEntityFrameworkStores<AppIdentityDbContext>()
+//    .AddDefaultTokenProviders();
 
 builder.Services.AddControllers();
 

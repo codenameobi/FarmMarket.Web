@@ -51,7 +51,12 @@ namespace FarmMarket.Service.Services
         public async Task<bool> UpdateFarmProduct(FarmProduct product, Guid productId)
         {
             var farmProduct = _context.FarmProducts.Where(p => p.Id == productId).FirstOrDefault();
-            _context.FarmProducts.Update(product);
+            farmProduct.Name = product.Name;
+            farmProduct.Amount = product.Amount;
+            farmProduct.Unit = product.Unit;
+            farmProduct.Description = product.Description;
+            _context.Entry(farmProduct).State = EntityState.Modified;
+
             await _context.SaveChangesAsync();
             return true;
 
